@@ -103,7 +103,7 @@
                             <div class="collapse" id="sidebarLayouts">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="{{ route('client.list_clients') }}">
+                                        <a href="{{ route('client.index') }}">
                                             <span class="sub-item">База клиентов</span>
                                         </a>
                                     </li>

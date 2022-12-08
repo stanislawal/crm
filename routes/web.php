@@ -35,9 +35,9 @@ use App\Http\Controllers\Option\SocialNetworkController;
 //})->name('project.list_projects');
 
 //Список клиентов
-Route::get('list_clients', function(){
-    return view('client.list_clients');
-})->name('client.list_clients');
+// Route::get('list_clients', function(){
+//     return view('client.list_clients');
+// })->name('client.list_clients');
 
 
 Route::get('/', function(){

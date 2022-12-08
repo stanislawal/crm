@@ -56,13 +56,14 @@
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Дата поступления тз</label>
                             <input type="date" class="form-control" name="start_date_project"
-                                   value="{{ now()->format('Y-m-d') }}" disabled value="{{ $projectInfo['start_date_project'] ?? '' }}">
+                                   disabled value="{{ $projectInfo['start_date_project'] ?? '' }}">
                         </div>
 
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Комментарий</label>
                             <textarea type="text" rows="4" class="form-control" name="comment"
-                                      placeholder="Укажите комментарий к проекту" disabled>{{ $projectInfo['comment'] ?? '' }}</textarea>
+                                      placeholder="Укажите комментарий к проекту"
+                                      disabled>{{ $projectInfo['comment'] ?? '' }}</textarea>
                         </div>
 
 
@@ -98,13 +99,15 @@
                     <div class="w-100 row m-0 p-2">
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Как платит</label>
-                            <input type="text" class="form-control" name="pay_info" disabled value="{{ $projectInfo['pay_info'] ?? '' }}">
+                            <input type="text" class="form-control" name="pay_info"
+                                   disabled value="{{ $projectInfo['pay_info'] ?? '' }}">
                         </div>
 
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Цена заказчика</label>
                             <div class="input-group mb-3">
-                                <input class="form-control" type="number" step="0.1" min="0.1" name="price_client" disabled value="{{ $projectInfo['price_client'] ?? '' }}">
+                                <input class="form-control" type="number" step="0.1" min="0.1" name="price_client"
+                                       disabled value="{{ $projectInfo['price_client'] ?? '' }}">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">РУБ</span>
                                 </div>
@@ -114,7 +117,8 @@
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Цена автора</label>
                             <div class="input-group mb-3">
-                                <input class="form-control" type="number" step="0.1" min="0.1" name="price_author" disabled value="{{ $projectInfo['price_author'] ?? '' }}">
+                                <input class="form-control" type="number" step="0.1" min="0.1" name="price_author"
+                                       disabled value="{{ $projectInfo['price_author'] ?? '' }}">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">РУБ</span>
                                 </div>
@@ -138,11 +142,6 @@
                                 @endforeach
                             </select>
                         </div>
-
-{{--                        <div class="form-group col-12 col-lg-6">--}}
-{{--                            <label for="" class="form-label">Портрет клиента</label>--}}
-{{--                            <input type="text" class="form-control" name="characteristic" disabled value="{{ $projectInfo['characteristic'] ?? '' }}">--}}
-{{--                        </div>--}}
 
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Договор</label>

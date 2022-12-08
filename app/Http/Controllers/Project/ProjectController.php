@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
     //Для отображения (вывода) всех записей
-    public function index()
+    public function index(Request $request)
     {
         $clients = Client::on()->get()->toArray(); //Достаем всех клиентов (заказчиков)
         $themes = Theme::on()->get()->toArray(); //Достаем все темы проектов
@@ -39,10 +39,45 @@ class ProjectController extends Controller
             'projectUser',
             'projectStatus',
             'projectClients'
-        ])
-            ->orderBy('id', 'desc')
-            ->get()
-            ->toArray();
+        ]);
+
+
+
+        //-----------------ФИЛЬТР-------------------
+
+        // по id
+        $projects->when(!empty($request->id), function ($where) use ($request) {
+            $where->where('id', $request->id);
+        });
+
+        $projects->when(!empty($request->manager_id), function ($where) use ($request) {
+            $where->where('manager_id', $request->manager_id);
+        });
+
+        $projects->when(!empty($request->project_name), function ($where) use ($request) {
+            $where->where('project_name', 'like', '%' . $request->project_name . '%');
+        });
+
+        $projects->when(!empty($request->price_client), function ($where) use ($request) {
+            $where->where('price_client', $request->price_client);
+        });
+
+        $projects->when(!empty($request->price_author), function ($where) use ($request) {
+            $where->where('price_author', $request->price_author);
+        });
+
+        $projects->when(!empty($request->contract), function ($where) use ($request) {
+            $where->where('contract', $request->contract);
+        });
+
+        $projects->when(!empty($request->status_id), function ($where) use ($request) {
+            $where->where('status_id', $request->status_id);
+        });
+
+        //-----------------ФИЛЬТР-------------------
+
+        $projects->orderBy('id', 'desc');
+        $projects = $projects->get()->toArray();
 
         return view('project.list_projects', [
             'projects' => $projects,
@@ -128,12 +163,11 @@ class ProjectController extends Controller
                 foreach ($request->client_id as $client) {
                     $clients[] = [
                         'project_id' => $project_id,
-                        'client_id' => $author
+                        'client_id' => $client
                     ];
                 }
 
                 CrossProjectClient::on()->insert($clients);
-
             }
 
             DB::commit();
@@ -216,3 +250,12 @@ class ProjectController extends Controller
         //
     }
 }
+
+
+
+// $mas = ['Администратор'];
+
+// $user = User::find($id);
+
+// $user->syncRoles($mas);
+

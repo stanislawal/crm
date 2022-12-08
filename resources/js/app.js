@@ -47,5 +47,7 @@ $('body select').each(function () {
  */
 window.searchToggle = function(){
     var containerSearch = $('#search');
-    containerSearch.toggle();
+
+    containerSearch.slideToggle('slow')
+    // containerSearch.toggle();
 }

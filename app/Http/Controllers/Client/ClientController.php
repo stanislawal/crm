@@ -9,13 +9,20 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+
+        $clients = Client::on()
+        ->with([
+        'socialNetwork'
+        ])
+        ->get()
+        ->toArray();
+        $socialnetwork = SocialNetwork::on()->get()->toArray();
+        return view('client.list_clients', [
+            'clients'=>$clients,
+            'social_network' => $socialnetwork
+        ]);
 
     }
 
@@ -35,61 +42,39 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $attr = [
-            'name'=>$request->name ?? null,
+            'name'=>$request->name,
             'dialog_location'=>$request->dialog_location ?? null,
             'scope_work'=>$request->scope_work ?? null,
             'company_name'=>$request->company_name ?? null,
+            'site'=>$request->site ?? null,
             'characteristic'=>$request->characteristic ?? null,
         ];
 
-        // $attr = $request->all();
-        // unset($attr['_token']);
-
+        // dd($attr);
         Client::on()->create($attr);
         return redirect()->back();
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit($client)
     {
-        //
+        return view('client.client_edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

@@ -9,71 +9,106 @@
 
         <div class="col-12 mb-3">
             <div class="w-100 shadow border rounded p-3">
-                <div class="btn btn-secondary" onclick="searchToggle()"><i class="fa fa-search search-icon mr-3"></i>Поиск
+                <div class="btn btn-sm btn-secondary" onclick="searchToggle()"><i
+                        class="fa fa-search search-icon mr-2"></i>Поиск
                 </div>
-                <div class="row py-3 m-0" id="search" style="display: none">
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="form-group col-12 col-lg-4">
-                        <label for="" class="form-label">Дата поступления тз</label>
-                        <input type="date" class="form-control" name="start_date_project"
-                               value="{{ now()->format('Y-m-d') }}" disabled
-                               value="{{ $projectInfo['start_date_project'] ?? '' }}">
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="form-group col-12">
-                            <div class="b-flex justify-content-end">
-                                <div>
-                                    <button class="btn btn-success">Искать</button>
+                <form action="{{ route('project.index') }}" method="GET">
+                    @csrf
+                    <div class="row m-0" id="search"  @if(empty(request()->all())) style="display: none;" @endif>
+                        <div class="w-100 row m-0 py-3">
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">ID</label>
+                                <input type="text" class="form-control" name="id" value="{{ request()->id ?? '' }}">
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">Менеджер</label>
+                                <select class="form-control" name="manager_id">
+                                    <option value="">Не выбрано</option>
+                                    @foreach ($managers as $manager)
+                                        <option value="{{$manager['id']}}">{{$manager['full_name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">Название проекта</label>
+                                <input type="text" class="form-control" name="project_name"
+                                       value="{{ request()->project_name ?? '' }}">
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">Цена заказчика</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="number" step="0.01" min="0.01" name="price_client" value="{{ request()->price_client ?? '' }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">РУБ</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">Цена автора</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="number" step="0.01" min="0.01" name="price_author" value="{{ request()->price_author ?? '' }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">РУБ</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">Договор</label>
+                                <select class="form-control" name="contract">
+                                    <option value="">Не выбрано</option>
+                                    <option value="1">Да</option>
+                                    <option value="0">Нет</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 col-md-6 col-lg-4">
+                                <label for="" class="form-label">Статус</label>
+                                <select class="form-control" name="status_id" id="">
+                                    <option value="">Не выбрано</option>
+                                    @foreach ($statuses as $status)
+                                        <option value="{{$status['id']}}"
+                                                @if($status['id'] == \App\Constants\StatusConstants::DRAFT)
+                                                selected
+                                            @endif
+                                        >{{$status['name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-12 p-0">
+                                <div class="form-group col-12">
+                                    <div class="w-100 d-flex justify-content-end">
+                                        @if(!empty(request()->all() && count(request()->all())) > 0)
+                                            <a href="{{ route('project.index') }}" class="btn btn-sm btn-danger mr-3">Сбросить фильтр</a>
+                                        @endif
+                                        <button class="btn btn-sm btn-success">Искать</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Администрирование проектов</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">Администрирование проектов</h4>
+                        <div class="text-16">Найдено записей: {{ count($projects) }}</div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+
+
+
                         <table id="basic-datatables" class="display table  table-hover table-head-bg-info">
                             <thead>
                             <tr>
@@ -96,7 +131,7 @@
                                     <td><a href="{{route('project.edit',['project'=> $project['id']])}}">Открыть</a>
                                     </td>
                                     <td>{{$project['id']}}</td>
-                                    <td>{{$project['project_user']['full_name']}}</td>
+                                    <td>{{$project['project_user']['full_name'] ?? '-'}}</td>
                                     <td>
                                         @forelse ($project['project_clients'] as $client)
                                             {{ $client['name'] }}

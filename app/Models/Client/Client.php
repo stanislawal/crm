@@ -18,7 +18,7 @@ class Client extends Model
         'scope_work', //сфера деятельности
         'characteristic', //характеристика клиента
         'company_name', //Название компании
-        'site' //сайт компании
+        'site' //с  айт компании
     ];
 
     public $timestamps = true;
