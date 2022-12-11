@@ -15,7 +15,7 @@ class ClientController extends Controller
         $clients = Client::on()
             ->with([
                 'socialNetwork'
-            ])
+            ])->orderBy('id', 'desc')
             ->get()
             ->toArray();
         $socialNetwork = SocialNetwork::on()->get()->toArray();

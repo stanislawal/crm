@@ -147,7 +147,7 @@
                         </li>
                         <li class="nav-item">
                             <a data-toggle="collapse" href="#user">
-                                <i class="flaticon-user-5"></i>
+                                <i class="fas fa-users"></i>
                                 <p>Пользователи</p>
                                 <span class="caret"></span>
                             </a>
@@ -160,7 +160,7 @@
                                     </li>
                                     <li>
                                         <a href="{{route('user.create')}}">
-                                            <span class="sub-item">Создать пользователя</span>
+                                            <span class="sub-item">Добавить пользователя</span>
                                         </a>
                                     </li>
                                 </ul>

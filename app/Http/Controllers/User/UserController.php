@@ -13,11 +13,12 @@ class UserController extends Controller
 
     public function index()
     {
-       $users =  User::on()->get()->toArray();
-
+       $users =  User::on()->with(['roles'])->orderBy('id', 'desc')->get()->toArray();
+//        dd($users);
         return view('user.list_users', [
             'users' => $users,
         ]);
+
     }
 
     //Страница создания (нахождения формы) пользователя
