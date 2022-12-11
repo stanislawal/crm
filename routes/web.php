@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Tables\TableProject;
+use App\Http\Controllers\User\UserController;
 use PhpOption\Option;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestShowController;
@@ -24,11 +25,6 @@ use App\Http\Controllers\Option\SocialNetworkController;
 */
 
 
-
-
-
-
-
 //Список проектов
 //Route::get('/list_projects', function(){
 //    return view('project.list_projects');
@@ -40,17 +36,17 @@ use App\Http\Controllers\Option\SocialNetworkController;
 // })->name('client.list_clients');
 
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function () {
     // login
     Route::get('/login', [AuthController::class, 'login'])->name('login');
 });
 
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
     # Проекты
     Route::resource('project', ProjectController::class)->except('show');
 
@@ -67,4 +63,7 @@ Route::middleware('auth')->group(function (){
 
     #
     Route::resource('add_option_socialnetwork', SocialNetworkController::class);
+
+    # Пользователи
+    Route::resource('user', UserController::class);
 });

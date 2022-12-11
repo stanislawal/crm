@@ -29,7 +29,7 @@
                             <label for="" class="form-label">Место ведения диалога</label>
                             <select class="form-control" name="dialog_location">
                                 <option disabled value="">Места</option>
-                                @foreach ($socialnetwork as $dialog)
+                                @foreach ($socialNetwork ?? '' as $dialog)
                                <option value="{{$dialog['id']}}">{{$dialog['name']}}</option>
                            @endforeach
                             </select>

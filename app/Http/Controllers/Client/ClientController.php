@@ -9,48 +9,43 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+
     public function index()
     {
-
         $clients = Client::on()
-        ->with([
-        'socialNetwork'
-        ])
-        ->get()
-        ->toArray();
-        $socialnetwork = SocialNetwork::on()->get()->toArray();
+            ->with([
+                'socialNetwork'
+            ])
+            ->get()
+            ->toArray();
+        $socialNetwork = SocialNetwork::on()->get()->toArray();
         return view('client.list_clients', [
-            'clients'=>$clients,
-            'social_network' => $socialnetwork
+            'clients' => $clients,
+            'social_network' => $socialNetwork
         ]);
-
     }
 
 
     public function create()
     {
-
-        $socialnetwork = SocialNetwork::on()->get();
+        $socialNetwork = SocialNetwork::on()->get();
 
         return view('client.client', [
-            'socialnetwork' => $socialnetwork,
+            'socialNetwork' => $socialNetwork,
         ]);
-
     }
 
 
     public function store(Request $request)
     {
         $attr = [
-            'name'=>$request->name,
-            'dialog_location'=>$request->dialog_location ?? null,
-            'scope_work'=>$request->scope_work ?? null,
-            'company_name'=>$request->company_name ?? null,
-            'site'=>$request->site ?? null,
-            'characteristic'=>$request->characteristic ?? null,
+            'name' => $request->name,
+            'dialog_location' => $request->dialog_location ?? null,
+            'scope_work' => $request->scope_work ?? null,
+            'company_name' => $request->company_name ?? null,
+            'site' => $request->site ?? null,
+            'characteristic' => $request->characteristic ?? null,
         ];
-
-        // dd($attr);
         Client::on()->create($attr);
         return redirect()->back();
 

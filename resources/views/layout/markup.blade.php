@@ -30,7 +30,6 @@
 
             <!-- Navbar Header -->
             <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-
                 <div class="container-fluid">
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         <button class="btn btn-sm btn-warning" style="color:black!important;"><i
@@ -141,6 +140,27 @@
                                     <li>
                                         <a href="{{route('add_option_socialnetwork.index')}}">
                                             <span class="sub-item">Соц. сети</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="collapse" href="#user">
+                                <i class="flaticon-user-5"></i>
+                                <p>Пользователи</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="user">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a href="{{route('user.index')}}">
+                                            <span class="sub-item">База пользователей</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('user.create')}}">
+                                            <span class="sub-item">Создать пользователя</span>
                                         </a>
                                     </li>
                                 </ul>

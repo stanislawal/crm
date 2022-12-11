@@ -6,7 +6,7 @@
             @include('Answer.custom_response')
             @include('Answer.validator_response')
         </div>
-        {{dd($clients)}}
+{{--        {{dd($clients)}}--}}
         <div class="col-12">
             {{-- {{dd($clients)}} --}}
                 <div class="card-body">
@@ -46,5 +46,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection
