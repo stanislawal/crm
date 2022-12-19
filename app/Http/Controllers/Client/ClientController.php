@@ -60,13 +60,35 @@ class ClientController extends Controller
 
     public function edit($client)
     {
-        return view('client.client_edit');
+        $clients = Client::on()
+            ->find($client)
+            ->toArray();
+        $socialNetwork = SocialNetwork::on()
+            ->get()
+            ->toArray();
+
+
+        return view('client.client_edit', [
+            'clients' => $clients,
+            'socialNetwork' => $socialNetwork,
+
+        ]);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $client)
     {
-        //
+        $attr = [
+            'name' => $request->name ?? null,
+            'scope_work' => $request->scope_work ?? null,
+            'company_name' => $request->company_name ?? null,
+            'site' => $request->site ?? null,
+            'characteristic' => $request->characteristic ?? null,
+        ];
+
+        Client::on()->where('id', $client)->update($attr);
+        return redirect()->back()->with(['success' => 'Данные успешно обновлены.']);
+
     }
 
 

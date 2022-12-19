@@ -11,7 +11,6 @@
             <div class="col-12">
                 <div class="shadow border rounded row mb-3">
                     <div class="w-100 text-18 px-3 py-2 font-weight-bold border-bottom bg-blue text-white">О проекте</div>
-
                     <div class="w-100 row m-0 p-2">
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Менеджер</label>

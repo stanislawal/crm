@@ -42,7 +42,7 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
     // login
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('login', [AuthController::class, 'login'])->name('login');
 });
 
 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('project', ProjectController::class)->except('show');
 
     # Клиенты
-    Route::resource('client', ClientController::class);
+    Route::resource('client', ClientController::class)->except('show');;
 
     # Рассчетные таблицы
     Route::resource('table_project', TableProject::class);
@@ -60,8 +60,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('add_option_status', StatusController::class);
     Route::resource('add_option_theme', ThemeController::class);
     Route::resource('add_option_style', StyleController::class);
-
-    #
     Route::resource('add_option_socialnetwork', SocialNetworkController::class);
 
     # Пользователи

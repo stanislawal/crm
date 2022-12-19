@@ -42,7 +42,7 @@
 
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Название проекта</label>
-                            <input type="text" required class="form-control" name="project_name">
+                            <input type="text" class="form-control" name="project_name">
                         </div>
 
 
