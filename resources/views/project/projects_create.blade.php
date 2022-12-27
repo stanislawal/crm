@@ -1,5 +1,7 @@
 @extends('layout.markup')
-
+@section('custom_css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+@endsection
 @section('content')
 
     <h2 class="mb-3">Добавить новый проект</h2>
@@ -58,7 +60,7 @@
 
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Начальный объём проекта</label>
-                            <input type="text"required class="form-control" name="total_symbols">
+                            <input type="text" required class="form-control" name="total_symbols">
                         </div>
 
                         <div class="form-group col-12 col-lg-6">
@@ -76,7 +78,7 @@
 
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Назначить авторов</label>
-                            <select class="form-control" required multiple size="4" name="author_id[]">
+                            <select class="form-control select-project-authors" required multiple="multiple" name="author_id[]">
                                 <option value="">Не выбрано</option>
                                 @foreach ($authors as $author)
                                     <option value="{{$author['id']}}">{{$author['full_name']}}</option>
@@ -90,7 +92,7 @@
                                 @foreach ($statuses as $status)
                                     <option value="{{$status['id']}}"
                                             @if($status['id'] == \App\Constants\StatusConstants::DRAFT)
-                                            selected
+                                                selected
                                         @endif
                                     >{{$status['name']}}</option>
                                 @endforeach
@@ -112,7 +114,8 @@
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Цена заказчика</label>
                             <div class="input-group mb-3">
-                                <input class="form-control" required type="number" step="0.1" min="0.1" name="price_client">
+                                <input class="form-control" required type="number" step="0.1" min="0.1"
+                                       name="price_client">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">РУБ</span>
                                 </div>
@@ -122,7 +125,8 @@
                         <div class="form-group col-12 col-lg-6">
                             <label for="" class="form-label">Цена автора</label>
                             <div class="input-group mb-3">
-                                <input class="form-control" required type="number" step="0.1" min="0.1" name="price_author">
+                                <input class="form-control" required type="number" step="0.1" min="0.1"
+                                       name="price_author">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">РУБ</span>
                                 </div>
@@ -138,7 +142,7 @@
 
                         <div class="form-group col-12">
                             <label for="" class="form-label">Заказчики</label>
-                            <select class="form-control" required multiple size="5" title="Пожалуйста, выберите"
+                            <select class="form-control select-project-clients" required multiple size="5" title="Пожалуйста, выберите"
                                     name="client_id[]">
                                 <option value="">Не выбрано</option>
                                 @foreach ($clients as $client)
@@ -182,4 +186,14 @@
 
         </div>
     </form>
+
+@endsection
+
+@section('custom_js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+            integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="{{asset('js/select2.js')}}"></script>
 @endsection

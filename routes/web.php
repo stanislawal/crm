@@ -42,7 +42,8 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
     // login
-    Route::get('login', [AuthController::class, 'login'])->name('login');
+//    Route::get('login', [AuthController::class, 'login'])->name('login');
+
 });
 
 

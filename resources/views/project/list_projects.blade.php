@@ -6,7 +6,7 @@
             @include('Answer.custom_response')
             @include('Answer.validator_response')
         </div>
-
+{{--        ФИЛЬТР--}}
         <div class="col-12 mb-3">
             <div class="w-100 shadow border rounded p-3">
                 <div class="btn btn-sm btn-secondary" onclick="searchToggle()"><i
@@ -115,7 +115,7 @@
                                 <th>#</th>
                                 <th>ID</th>
                                 <th>Менеджер</th>
-                                <th>Заказчик</th>
+                                <th>Заказчик(и)</th>
                                 <th>Проект</th>
                                 <th>Тема</th>
                                 <th>Цена заказчика</th>

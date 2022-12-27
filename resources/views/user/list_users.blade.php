@@ -18,7 +18,7 @@
                         <table id="basic-datatables" class="display table  table-hover table-head-bg-info">
                             <thead>
                             <tr>
-                                <th>#</th>
+{{--                                <th>#</th>--}}
                                 <th>ID</th>
                                 <th>Ф.И.О</th>
                                 <th>Логин</th>
@@ -31,8 +31,8 @@
                             <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td><a href="{{route('user.edit',['user'=> $user['id']])}}">Открыть</a>
-                                    </td>
+{{--                                    <td><a href="{{route('user.edit',['user'=> $user['id']])}}">Открыть</a>--}}
+{{--                                    </td>--}}
                                     <td>{{$user['id']}}</td>
                                     <td>{{$user['full_name'] ?? '-'}}</td>
                                     <td>{{$user['login'] ?? '-'}}</td>

@@ -114,6 +114,28 @@
                                 </ul>
                             </div>
                         </li>
+
+                        <li class="nav-item">
+                            <a data-toggle="collapse" href="#user">
+                                <i class="fas fa-users"></i>
+                                <p>Пользователи</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="user">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a href="{{route('user.index')}}">
+                                            <span class="sub-item">База пользователей</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('user.create')}}">
+                                            <span class="sub-item">Добавить пользователя</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a data-toggle="collapse" href="#forms">
                                 <i class="fas fa-pen-square"></i>
@@ -140,27 +162,6 @@
                                     <li>
                                         <a href="{{route('add_option_socialnetwork.index')}}">
                                             <span class="sub-item">Соц. сети</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a data-toggle="collapse" href="#user">
-                                <i class="fas fa-users"></i>
-                                <p>Пользователи</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse" id="user">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="{{route('user.index')}}">
-                                            <span class="sub-item">База пользователей</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{route('user.create')}}">
-                                            <span class="sub-item">Добавить пользователя</span>
                                         </a>
                                     </li>
                                 </ul>

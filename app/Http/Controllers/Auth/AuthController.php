@@ -13,8 +13,9 @@ class AuthController extends Controller
 
     public function login()
     {
-        Auth::loginUsingId(1);
-        return redirect()->back();
+//        Auth::loginUsingId(1);
+//        return redirect()->back();
+        return view('auth.login');
     }
 
 }

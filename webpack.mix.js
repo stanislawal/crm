@@ -23,3 +23,5 @@ mix.css('resources/css/auth.css', 'public/css');
 //project css
 mix.css('resources/css/projects.css', 'public/css');
 
+//select2 (plugin) js
+mix.js('resources/js/select2.js', 'public/js');
