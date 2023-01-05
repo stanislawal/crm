@@ -7,8 +7,6 @@
   \*****************************/
 /***/ (() => {
 
-console.log('Start');
-
 /**
  * Управление доступом полей формы
  *
@@ -20,7 +18,6 @@ window.onEdit = function (formName, disable) {
   var btnEdit = $(form).find('div[data-role="edit"]');
   var btnCancel = $(form).find('div[data-role="cancel"]').show();
   var btnSendForm = $(form).find("button");
-  console.log(btnEdit, btnCancel, btnSendForm, disable);
   $(form).find('select, textarea, input').prop('disabled', Boolean(disable));
   if (Boolean(disable)) {
     btnCancel.hide();
@@ -31,19 +28,7 @@ window.onEdit = function (formName, disable) {
     btnSendForm.show();
     btnEdit.hide();
   }
-  $(form).find('select[name="client_id[]"], select[name="author_id[]"]').prop('disabled', true);
 };
-
-/**
- * автозаполнение всех select
- */
-$('body select').each(function () {
-  var select = $(this);
-  var value = select.attr('value');
-  select.children('option').prop('selected', false);
-  select.children('option:contains("' + value + '")').prop('selected', true);
-  select.children('option[value="' + value + '"]').prop('selected', true);
-});
 
 /**
  * Управление поиском
@@ -51,7 +36,6 @@ $('body select').each(function () {
 window.searchToggle = function () {
   var containerSearch = $('#search');
   containerSearch.slideToggle('slow');
-  // containerSearch.toggle();
 };
 
 /***/ }),
@@ -73,19 +57,6 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************!*\
   !*** ./resources/css/auth.css ***!
   \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./resources/css/projects.css":
-/*!************************************!*\
-  !*** ./resources/css/projects.css ***!
-  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -182,7 +153,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/projects": 0,
 /******/ 			"css/auth": 0,
 /******/ 			"css/app": 0
 /******/ 		};
@@ -234,10 +204,9 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/projects","css/auth","css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/projects","css/auth","css/app"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/projects","css/auth","css/app"], () => (__webpack_require__("./resources/css/auth.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/projects","css/auth","css/app"], () => (__webpack_require__("./resources/css/projects.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth","css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/auth","css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/auth","css/app"], () => (__webpack_require__("./resources/css/auth.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Project;
 
 use App\Helpers\UserHelper;
+use App\Models\Article;
 use App\Models\Cross\CrossProjectAuthor;
 use App\Models\Cross\CrossProjectClient;
+use App\Models\Currency;
 use App\Models\Status;
 use App\Models\Project\Mood;
 use App\Models\User;
@@ -40,8 +42,6 @@ class ProjectController extends Controller
             'projectStatus',
             'projectClients'
         ]);
-
-
 
         //-----------------ФИЛЬТР-------------------
 
@@ -188,25 +188,28 @@ class ProjectController extends Controller
     //Страница редактирования одной записи
     public function edit($project)
     {
+
         $clients = Client::on()->get()->toArray(); //Достаем всех клиентов (заказчиков)
         $themes = Theme::on()->get()->toArray(); //Достаем все темы проектов
         $moods = Mood::on()->get()->toArray(); //достаем все настроения из бд
         $statuses = Status::on()->get()->toArray(); //Достаем все статусы из бд
         $style = Style::on()->get()->toArray();
+        $articles = Article::on()->get()->toArray(); //Достаем все записи и данные о них из бд
         $managers = User::on()->whereHas('roles', function ($query) {
             $query->where('id', 2);
         })->get();
-
+        $currency = Currency::on()->get()->toArray();
         $authors = User::on()->whereHas('roles', function ($query) {
             $query->where('id', 3);
         })->get();
 
         $projectInfo = Project::on()
-            ->with(['projectTheme', 'projectUser', 'projectStatus', 'projectClients'])
+            ->with(['projectTheme', 'projectAuthor', 'projectUser', 'projectStatus', 'projectClients', 'projectArticle'])
             ->find($project)
             ->toArray();
-
         return view('project.project_edit', [
+            'currency' => $currency,
+            'articles' => $articles,
             'projectInfo' => $projectInfo,
             'statuses' => $statuses,
             'moods' => $moods,
@@ -241,6 +244,9 @@ class ProjectController extends Controller
 
         Project::on()->where('id', $project)->update($attr);
 
+        $this->updateAuthorForProject($project, $request->author_id ?? []);
+        $this->updateClientsForProject($project, $request->client_id  ?? []);
+
         return redirect()->back()->with(['success' => 'Данные успешно обновлены.']);
     }
 
@@ -248,6 +254,43 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    private function updateAuthorForProject(int $projectId, array $authorsId)
+    {
+        CrossProjectAuthor::on()->where('project_id', $projectId)->delete();
+
+        $authors = [];
+
+        foreach ($authorsId as $authorId) {
+            $authors[] = [
+                'user_id' => $authorId,
+                'project_id' => $projectId
+            ];
+        }
+
+        if (count($authors) > 0) {
+            CrossProjectAuthor::on()->insert($authors);
+        }
+    }
+
+    private function updateClientsForProject(int $projectId, array $clientsId)
+    {
+        CrossProjectClient::on()->where('project_id', $projectId)->delete();
+
+        $clients = [];
+
+        foreach ($clientsId as $clientId) {
+            $clients[] = [
+                'project_id' => $projectId,
+                'client_id' => $clientId
+            ];
+        }
+
+        if (count($clients) > 0) {
+            CrossProjectClient::on()->insert($clients);
+        }
     }
 }
 

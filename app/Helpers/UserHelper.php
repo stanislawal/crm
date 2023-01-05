@@ -7,7 +7,7 @@ class UserHelper
 
     //Возврвщает id аторизованного пользователя
     public static function getUserId(){
-        return auth()->user()->id;
+        return auth()->user()->id ?? null;
     }
 
     public static function isAdmin(){

@@ -32,9 +32,9 @@
             <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
                 <div class="container-fluid">
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-                        <button class="btn btn-sm btn-warning" style="color:black!important;"><i
-                                class="fas fa-sign-out-alt pr-2"></i>Выход
-                        </button>
+                        <a href="{{route('logout')}}"><button class="btn btn-sm btn-warning" style="color:black!important;"><i
+                                    class="fas fa-sign-out-alt pr-2"></i>Выход
+                            </button></a>
                     </ul>
                 </div>
             </nav>

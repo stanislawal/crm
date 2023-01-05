@@ -11,17 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
+
+//---------------------JS-----------------
 // app js
 mix.js('resources/js/app.js', 'public/js');
-
-// app css
-mix.css('resources/css/app.css', 'public/css');
-
-// auth css
-mix.css('resources/css/auth.css', 'public/css');
-
-//project css
-mix.css('resources/css/projects.css', 'public/css');
-
 //select2 (plugin) js
 mix.js('resources/js/select2.js', 'public/js');
+
+
+//---------------------CSS-----------------
+// app css
+mix.css('resources/css/app.css', 'public/css');
+// auth css
+mix.css('resources/css/auth.css', 'public/css');

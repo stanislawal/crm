@@ -11,11 +11,36 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    public function login()
+    public function index()
     {
-//        Auth::loginUsingId(1);
-//        return redirect()->back();
         return view('auth.login');
+    }
+
+    public function store(Request $request)
+    {
+        $attr = [
+            'login' => $request->login,
+            'password' => $request->password
+        ];
+
+        if (Auth::attempt($attr)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('home');
+        }else{
+            return redirect()->back()->with(['error' => 'Неверные данные аутентификации']);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login.index');
     }
 
 }

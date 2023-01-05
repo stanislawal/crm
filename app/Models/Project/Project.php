@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Models\Project;
+
+use App\Models\Article;
 use App\Models\Client\Client;
+use App\Models\Cross\CrossprojectArticle;
 use App\Models\Cross\CrossProjectClient;
 use App\Models\User;
 use App\Models\Status;
@@ -38,42 +41,52 @@ class Project extends Model
 
     public $timestamps = true;
 
-    public function projectAuthor(){
+
+    public function projectAuthor()
+    {
         //Отношение многие ко многим. первый параметр - связь с конечной таблице. второй параметр - название промежуточной таблицы.
         return $this->belongsToMany(User::class, CrossProjectAuthor::class, 'project_id', 'user_id');
     }
 
-    public function projectStatus(){
+    public function projectArticle()
+    {
+        //Отношение многие ко многим. первый параметр - связь с конечной таблице. второй параметр - название промежуточной таблицы.
+        return $this->belongsToMany(Article::class, CrossprojectArticle::class, 'project_id', 'article_id');
+    }
+
+    public function projectStatus()
+    {
         //Обратное отношение. прямая связь моделей
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    public function projectStyle(){
-
+    public function projectStyle()
+    {
         return $this->belongsTo(Style::class, 'style_id');
     }
 
-    public function projectMood(){
-
+    public function projectMood()
+    {
         return $this->belongsTo(Mood::class, 'mood_id');
     }
 
-    public function projectUserCreate(){
-
+    public function projectUserCreate()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function projectTheme(){
-
+    public function projectTheme()
+    {
         return $this->belongsTo(Theme::class, 'theme_id');
     }
 
-    public function projectUser(){
-
+    public function projectUser()
+    {
         return $this->belongsTo(User::class, 'manager_id');
     }
 
-    public function projectClients(){
+    public function projectClients()
+    {
         //Отношение многие ко многим. первый параметр - связь с конечной таблице. второй параметр - название промежуточной таблицы.
         return $this->belongsToMany(Client::class, CrossProjectClient::class, 'project_id', 'client_id');
     }
